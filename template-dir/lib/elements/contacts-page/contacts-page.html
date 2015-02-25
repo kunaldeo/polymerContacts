@@ -1,0 +1,84 @@
+<link rel="import" href="../base-page/base-page.html">
+<link rel="import" href="../../../../packages/core_elements/core_list_dart.html">
+<link rel="import" href="../../../../packages/core_elements/core_menu.html">
+<link rel="import" href="../../../../packages/paper_elements/paper_menu_button.html">
+<link rel="import" href="../../../../packages/paper_elements/paper_dropdown.html">
+
+<polymer-element name="contacts-page" extends="base-page"
+                 attributes="contacts heading category">
+  <template>
+    <link rel="stylesheet" href="contacts-page.css">
+
+    <core-drawer-panel id="drawerPanel" forceNarrow>
+
+      <!-- Drawer -->
+      <core-header-panel drawer mode="seamed">
+        <core-toolbar>Menu</core-toolbar>
+        <core-menu selected="0" on-core-select="{{closeDrawer}}">
+          <paper-item noink>
+            <a route="/contacts/all" on-click="{{navigate}}">
+              All Contacts
+            </a>
+          </paper-item>
+          <paper-item noink>
+            <a route="/contacts/favorites" on-click="{{navigate}}">
+              Favorites
+            </a>
+          </paper-item>
+          <paper-item noink>
+            <a route="/contacts/circles" on-click="{{navigate}}">
+              Circles
+            </a>
+          </paper-item>
+        </core-menu>
+      </core-header-panel>
+
+      <!-- Main -->
+      <div main layout vertical>
+        <core-header-panel id="headerPanel" mode="seamed" flex>
+          <core-toolbar>
+            <paper-icon-button icon="menu" core-drawer-toggle>
+            </paper-icon-button>
+            <div id="title" flex>{{heading}}</div>
+
+            <paper-menu-button id="menuBtn" noink>
+              <paper-icon-button icon="more-vert" noink></paper-icon-button>
+              <paper-dropdown class="dropdown" halign="right">
+                <core-menu class="menu">
+                  <paper-item>Settings</paper-item>
+                  <paper-item>Help</paper-item>
+                  <paper-item>Feedback</paper-item>
+                </core-menu>
+              </paper-dropdown>
+            </paper-menu-button>
+
+          </core-toolbar>
+          <div class="content">
+
+            <core-list-dart id="list" data="{{contacts}}"
+                                 scrollTarget="{{$['headerPanel'].scroller}}"
+                                 runwayFactor="5">
+              <template>
+                <a route="{{index}}" on-click="{{navigateIndex}}">
+                  <div class="row" layout horizontal center>
+                    <core-image src="{{model['avatar']}}" preload sizing="cover">
+                    </core-image>
+                    <div flex>{{model['name']}}</div>
+                  </div>
+                </a>
+              </template>
+            </core-list-dart>
+
+          </div>
+        </core-header-panel>
+
+        <!-- Add contact -->
+        <a route="/add" on-click="{{navigate}}">
+          <paper-fab icon="add" noink></paper-fab>
+        </a>
+      </div>
+    </core-drawer-panel>
+  </template>
+  <script type="application/dart" src="contacts_page.dart"></script>
+
+</polymer-element>

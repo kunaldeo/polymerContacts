@@ -1,0 +1,22 @@
+name: '{{projectName}}'
+version: 0.0.1
+description: >
+  A full fledged polymer app with layout, route and ajax support.
+#author: {{author}} <email@example.com>
+#homepage: https://www.example.com
+environment:
+  sdk: '>=1.8.5'
+dependencies:
+  polymer: ^0.15.5
+  paper_elements: ^0.6.1
+  core_elements: ^0.6.0+4
+  route_hierarchical: ^0.6.1+1
+  sass: '>=0.4.0 <0.5.0'
+transformers:
+- polymer:
+    entry_points:
+    - web/index.html
+#- sass:
+#    style: compressed
+
+

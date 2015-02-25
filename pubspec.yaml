@@ -1,0 +1,7 @@
+name: polymerContacts
+description: A full fledged polymer app with layout, route and ajax support.
+homepage: https://github.com/kunaldeo/stagehandtrialtemp
+dependencies:
+  plugins: 'any'
+  crypto: '>=0.9.0 <0.10.0'
+  grinder: '>=0.6.0 <0.7.0'

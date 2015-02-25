@@ -1,0 +1,91 @@
+<link rel="import" href="../base-page/base-page.html">
+
+<polymer-element name="info-page" extends="base-page" attributes="contactId contacts" layout vertical>
+  <template>
+    <link rel="stylesheet" href="info-page.css">
+
+    <!--
+    On larger screens, change the behavior of the header panel so it doesn't
+    scroll away or do the condenses feature. Instead, treat its content like
+    a regular toolbar.
+    -->
+    <core-media-query query="min-width: 640px" queryMatches="{{largeScreen}}">
+    </core-media-query>
+
+    <core-scroll-header-panel id="scrollHeaderPanel"
+                              condenses?="{{!largeScreen}}"
+                              fixed?="{{largeScreen}}"
+                              flex>
+
+      <core-toolbar class="{{ {tall: !largeScreen} }}">
+        <a href="/" on-click="{{goBack}}">
+          <paper-icon-button icon="arrow-back"></paper-icon-button>
+        </a>
+        <div id="title" class="bottom indent">{{contacts[contactId]['name']}}</div>
+      </core-toolbar>
+      <div content>
+
+        <div class="card-header" hidden?="{{!largeScreen}}">
+          <div class="single-line" layout horizontal center>
+            <core-image src="{{contact['avatar']}}" preload sizing="cover">
+            </core-image>
+            <div class="card-name">{{contact['name']}}</div>
+          </div>
+        </div>
+
+        <!-- Phone -->
+        <div class="group">
+          <div class="item">
+            <core-icon icon="app:phone"></core-icon>
+            <div class="double-line-1">(555) 546-0060</div>
+            <div class="double-line-2">Home</div>
+          </div>
+          <div class="item">
+            <div class="double-line-1">(555) 233-8464</div>
+            <div class="double-line-2">Work</div>
+          </div>
+          <div class="item">
+            <div class="double-line-1">(555) 158-2516</div>
+            <div class="double-line-2">Cell</div>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="group">
+          <div class="item">
+            <core-icon icon="mail"></core-icon>
+            <div class="double-line-1">truefacts@fruitbat.com</div>
+            <div class="double-line-2">Home</div>
+          </div>
+          <div class="item">
+            <div class="double-line-1">parkourian@thegoogles.com</div>
+            <div class="double-line-2">Work</div>
+          </div>
+          <div class="item">
+            <div class="double-line-1">anakedpaul@http203.com</div>
+            <div class="double-line-2">Personal</div>
+          </div>
+        </div>
+
+        <!-- Location -->
+        <div class="group">
+          <div class="item">
+            <core-icon icon="room"></core-icon>
+            <div class="double-line-1">123 Chicken Dinner Drive</div>
+            <div class="double-line-2">Home</div>
+          </div>
+          <div class="item">
+            <div class="double-line-1">414 Possum Avenue</div>
+            <div class="double-line-2">Work</div>
+          </div>
+          <div class="item">
+            <div class="double-line-1">1969 Sunshine Boardwalk</div>
+            <div class="double-line-2">Vacation</div>
+          </div>
+        </div>
+      </div>
+    </core-scroll-header-panel>
+  </template>
+  <script type="application/dart" src="info_page.dart"></script>
+
+</polymer-element>
